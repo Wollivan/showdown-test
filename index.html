@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script type="module" defer>
+      import showdown from "showdown";
+      console.log(window.location.pathname);
+      async function getContent() {
+        const response = await fetch(
+          "https://raw.githubusercontent.com/Wollivan/dummy-readme/main/README.md"
+        );
+        const raw = await response.text();
+
+        const converter = new showdown.Converter();
+        const html = converter.makeHtml(raw);
+        document.body.innerHTML = html;
+      }
+
+      getContent();
+    </script>
+  </head>
+  <body></body>
+</html>
